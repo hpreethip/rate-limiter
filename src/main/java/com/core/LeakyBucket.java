@@ -1,4 +1,4 @@
-package com.example;
+package com.core;
 
 import java.time.Instant;
 
@@ -19,7 +19,7 @@ public class LeakyBucket {
         this(capacity, rate, Instant.now().getEpochSecond());
     }
 
-    public synchronized boolean allowRequest(long timestamp) {
+    public boolean allowRequest(long timestamp) {
         long elapsed = timestamp - lastChecked;
         int leaked = (int) (elapsed * rate);
         water = Math.max(0, water - leaked);
